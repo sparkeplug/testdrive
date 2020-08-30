@@ -4,17 +4,19 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/index.tsx",
+  target: "web",
   mode: "development",
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: "babel-loader",
-        options: {
-          presets: ["@babel/env"],
-        },
+        test: /\.(ts|tsx)$/,
+        loader: "awesome-typescript-loader",
+      },
+      {
+        enforce: "pre",
+        test: /\.js$/,
+        loader: "source-map-loader",
       },
       {
         test: /\.s[ac]ss$/i,
@@ -22,7 +24,7 @@ module.exports = {
       },
     ],
   },
-  resolve: { extensions: ["*", ".js", ".jsx"] },
+  resolve: { extensions: [".js", ".jsx", ".json", ".ts", ".tsx"] },
   output: {
     path: path.resolve(__dirname, "dist/"),
     publicPath: "/",
@@ -32,7 +34,8 @@ module.exports = {
     contentBase: path.join(__dirname, "public/"),
     port: 4000,
     publicPath: "http://localhost:4000/",
-    hotOnly: true,
+    hot: true,
+    writeToDisk: true,
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
