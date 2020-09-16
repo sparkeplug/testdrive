@@ -7,6 +7,7 @@ module.exports = {
   entry: "./src/index.tsx",
   target: "web",
   mode: "development",
+  devtool: "source-map",
   module: {
     rules: [
       {
