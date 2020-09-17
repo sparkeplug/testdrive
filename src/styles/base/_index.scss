@@ -1,0 +1,14 @@
+@import "./reset";
+@import "./colors";
+@import "./variables";
+
+html,
+body {
+  display: block;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
